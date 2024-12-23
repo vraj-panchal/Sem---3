@@ -1,0 +1,792 @@
+C++ Practical Questions for Inheritance 
+
+
+Question 1: Single Inheritance 
+Write a C++ program to demonstrate **single inheritance**. - Create a base class `Person` with attributes `name` and `age`, and a method to display these 
+details. - Create a derived class `Student` with an additional attribute `grade`. - Write a program to accept details of a student and display all their information using the 
+derived class. 
+
+
+
+#include<iostream>
+using namespace std;
+
+class person{
+    protected:
+    string name;
+    int age;
+    
+    public:
+    
+    void get_data(string str,int num){
+        name = str;
+        age = num;
+    }
+
+   virtual void display(){
+        cout<<name<<"\t"<<age<<"\t";
+    }
+};
+
+class student:public person{
+    string grade;
+    public:
+
+    void get_greade(string ch){
+        grade = ch;
+    }
+
+    void display() override{
+        person::display();
+        cout<<grade<<endl;
+    }
+};
+
+int main(){
+    int count;
+    cout<<"Enter the number of entry :";
+    cin>>count;
+
+    student S[count];
+    for(int i=0;i<count;i++){
+        string str;
+        int num;
+        cout<<"\nEnter the student name :";
+        cin>>str;
+        cout<<"Enter The Age OF The student :";
+        cin>>num;
+        S[i].get_data(str,num);
+        
+        string ch;
+        cout<<"Enter The Grade Of The Student :";
+        cin>>ch;
+        S[i].get_greade(ch);
+    }
+
+    cout<<"\nName\tAge\tGrade\n";
+    for(int i=0;i<count;i++){
+        //  person *bptr;
+        //  bptr = &S[i];
+        //  bptr->display();
+        S[i].display();
+    }
+    return 0;
+}
+
+
+
+
+
+Question 2: Multiple Inheritance 
+Write a C++ program to demonstrate **multiple inheritance**. - Create a class `Sports` with an attribute `sport_name` and a method to display the sport 
+name. - Create another class `Academics` with an attribute `subject` and a method to display the 
+subject. - Create a derived class `Student` that inherits from both `Sports` and `Academics`. - Write a program to display the details of a student who participates in a sport and excels 
+in a subject. 
+
+
+
+
+#include<iostream>
+using namespace std;
+
+class sports{
+    protected:
+    string sp_name;
+    public:
+    void get_data_sp(string name){
+        sp_name = name;
+    }
+    void display(){
+        cout<<sp_name<<"\t";
+    }
+};
+
+class academics{
+    protected:
+    string subject;
+    public:
+    void get_data_ac(string sub){
+        subject = sub;
+    }
+
+    void display(){
+        cout<<subject<<endl;
+    }
+};
+
+class student: public sports , public academics{ };
+
+int main(){
+    int count;
+    cout<<"Enter The Number Of Entry :";
+    cin>>count;
+
+    student S[count];
+    for(int i = 0; i < count; i++){
+        string s_name,a_name;
+        cout<<"\nEnter The Sports Name :";
+        cin>>s_name;
+        S[i].get_data_sp(s_name);
+
+        cout<<"Enter The Academics Subject Name :";
+        cin>>a_name;
+        S[i].get_data_ac(a_name);
+    }
+
+    cout<<"\nSports\tAcademics\n";
+    for(int i=0;i<count;i++){
+        S[i].sports::display();
+        S[i].academics::display();
+    }
+}
+
+
+
+
+Question 3: Multilevel Inheritance 
+Write a C++ program to demonstrate **multilevel inheritance**. - Create a base class `Vehicle` with attributes like `brand` and `model`. - Derive a class `Car` from `Vehicle` that adds an attribute `fuel_type`. - Further derive a class `ElectricCar` from `Car` with an additional attribute `battery_life`. - Write a program to accept and display details of an electric car using the derived class. 
+
+
+
+
+#include<iostream>
+using namespace std;
+
+class vehicle{
+    protected :
+    string brand;
+    string model;
+    public:
+    void get_data_ve(string b,string m){
+        brand = b;
+        model = m;
+    }
+
+    virtual void display(){
+        cout<<brand<<"\t"<<model<<"\t";
+    }
+};
+
+class car:public vehicle{
+    protected :
+    string fule_type;
+    public:
+    void get_data_car(string type){
+        fule_type = type;
+    }
+
+    void display(){
+        cout<<fule_type<<"\t";
+    }
+};
+
+class electric_car:public car{
+    private :
+    float battery_life;
+    public :
+    void get_electric(float life){
+        battery_life = life;
+    }
+
+    void display(){
+        cout<<battery_life<<endl;
+    }
+};
+
+int main()
+{
+    int count;
+    cout<<"Enter The Number Of Entry :";
+    cin>>count;
+
+    electric_car E[count];
+    for(int i=0;i<count;i++){
+        string b,m;
+        cout<<"\nEnter The Brand Name :";
+        cin>>b;
+        cout<<"Enter The Model Name :";
+        cin>>m;
+        E[i].get_data_ve(b,m);
+        
+        string type;
+        cout<<"Enter The Fule_type :";
+        cin>>type;
+        E[i].get_data_car(type);
+
+        float life;
+        cout<<"Enter The battery Life :";
+        cin>>life;
+        E[i].get_electric(life);
+    }
+
+    cout<<"\nBrand\tModel\tFule_Type\tbattery_life\n";
+    for(int i=0;i<count;i++){
+        E[i].vehicle::display();
+        E[i].car::display();
+        E[i].electric_car::display();
+    }
+    return 0;
+}
+
+
+
+
+Question 4: Hierarchical Inheritance 
+Write a C++ program to demonstrate **hierarchical inheritance**. - Create a base class `Shape` with an attribute `name` and a method to display the name of 
+the shape. - Create two derived classes `Rectangle` and `Circle`. - `Rectangle` should have attributes `length` and `breadth` with a method to calculate and 
+display the area. - `Circle` should have an attribute `radius` with a method to calculate and display the area. - Write a program to calculate and display the area of both a rectangle and a circle. 
+
+
+
+
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+class shape{
+    protected:
+    string s_name;
+    public:
+    void get_data(string name){
+        s_name = name;
+    }
+
+    virtual void display(){
+        cout<<s_name<<"\t";
+    }
+};
+
+class rectangle:public shape{
+    protected:
+    float length , breadth , area_r = 0;
+    public:
+    void get_data_r(float len,float bh){
+        length = len;
+        breadth = bh;
+    }
+
+    void display() override{
+        shape::display();
+        area_r = length * breadth;
+        cout<<"\nShape\tLength\tBreadth\tArea\n";;
+        cout<<length<<"\t"<<breadth<<"\t"<<area_r<<endl;
+    }
+};
+
+class circle:public shape{
+    protected:
+    float radius,area_c;
+    public:
+    void get_data_c(float red){
+        radius = red;
+    }
+
+    void display() override{
+        shape::display();
+        area_c = 3.14 * radius * radius;
+        cout<<"\nShape\tRadius\tArea\n";
+        cout<<radius<<"\t"<<area_c<<endl;
+    }
+};
+
+int main(){
+    float len,bh,rad;
+    string name;
+
+
+    cout<<"Enter The Shape Name (rectangle / circle):";
+    cin>>name;
+
+
+    if(name == "rectangle"){
+        
+        rectangle R;
+        cout<<"Enter The Length Of The Rectangle : ";
+        cin>>len;
+
+        cout<<"Enter The Breath Of The Rectangle :";
+        cin>>bh;
+
+        R.get_data(name);
+        R.get_data_r(len,bh);
+        R.display();
+    }else if(name == "circle"){
+        circle C;
+        cout<<"Enter The Radius Of The Circle :";
+        cin>>rad;
+
+        C.get_data(name);
+        C.get_data_c(rad);
+        C.display();
+    }else{
+        cout<<"Shape Dose Not Exist....!"<<endl;
+        return 0;
+    }
+    return 0;
+}
+
+
+
+Question 5: Hybrid Inheritance 
+Write a C++ program to demonstrate **hybrid inheritance**. - Create a class `Employee` with attributes `name` and `id`, and a method to display these 
+details. - Create another class `Manager` that inherits from `Employee` and adds an attribute 
+`team_size`. - Create another class `Engineer` that inherits from `Employee` and adds an attribute 
+`project_name`. - Finally, create a derived class `TeamLead` that inherits from both `Manager` and 
+`Engineer`, adding an attribute `lead_experience`. - Write a program to accept and display details of a team lead using the derived class.
+
+
+#include<iostream>
+using namespace std;
+
+class employee{
+    protected:
+    int id;
+    string name;
+    public:
+    void get_data_emp(int id,string name){
+        this->id = id;
+        this->name = name;
+    }
+
+    virtual void display(){
+        cout<<id<<"\t"<<name<<"\t";
+    }
+
+};
+
+class manager:public employee{
+    protected:
+    int team_size;
+    public:
+    void get_data_man(int size){
+        team_size = size;
+    }
+
+    void display() override{
+        employee::display();
+        cout<<team_size<<"\t";
+    }
+};
+
+class engineer : public employee{
+    protected:
+    string project_name;
+    public:
+    void get_data_pro(string name){
+        project_name = name;
+    }
+
+    void display() override{
+        employee::display();
+        cout<<project_name<<"\t";
+    }
+};
+
+class team_lead:public manager,public engineer{
+    protected:
+    int lead_experience;
+    public:
+    void get_data_team(string name,int id,int size,string p_name,int exp){
+       manager::get_data_emp(id,name);
+        get_data_man(size);
+        get_data_pro(p_name);
+        lead_experience = exp;
+    }
+
+    void display() override{
+        manager::display();
+        cout<<lead_experience<<endl;
+    }
+};
+
+int main(){
+    int count;
+    cout<<"Enter The Number OF Entry :";
+    cin>>count;
+
+    team_lead T[count];
+    for(int i=0;i<count;i++){
+        string name,p_name;
+        int id,size,exp;
+        
+        cout<<"Enter The Employee Id :";
+        cin>>id;
+
+        cout<<"Enter The Employee Name :";
+        cin>>name;
+
+        cout<<"Enter The Team Size :";
+        cin>>size;
+
+        cout<<"Enter The project Name :";
+        cin>>p_name;
+
+        cout<<"Enter The Lead Experiance :";
+        cin>>exp;
+
+        T[i].get_data_team(name,id,size,p_name,exp);
+    }
+
+    cout << "\nTeam Lead Details:\n";
+    cout << "ID\tName\tTeam_Size\tProject\tExperience\n";
+    for(int i=0;i<count;i++){
+        T[i].display();
+    }
+    return 0;    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include<iostream>
+using namespace std;
+
+class matrix{
+    private:
+    int arr[3][3];
+    public:
+    
+    void set_data(){
+        cout<<"Enter The Array Elements :";
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                cin>>arr[i][j];
+            }
+        }
+    }
+
+    void display(){
+        cout<<"The Array Elements Are :"<<endl;
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                cout<<" "<<arr[i][j];
+            }
+            cout<<"\n";
+        }
+    }
+
+    matrix operator +(matrix m1){
+        matrix tmp;
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                tmp.arr[i][j] = arr[i][j] + m1.arr[i][j];
+            }
+        }
+        return tmp;
+    }
+};
+
+int main(){
+        
+    matrix M1,M2,M3;
+    
+    M1.set_data();
+    M1.display();
+
+    M2.set_data();
+    M2.display();
+
+    M3 = M1 + M2;
+    M3.display();
+
+    return 0;
+}
+
+
+
+
+
+
+
+#include<iostream>
+#include<fstream>
+using namespace std;
+
+int main(){
+    ofstream fout;
+    fout.open("out.txt");
+    char str[30] = "MSCIT";
+
+    fout<<str;
+    fout.close();
+
+    ifstream fin("out.txt");
+    char str1[30];
+    fin>>str1;
+    cout<<str1;
+    fin.close();
+    return 0;
+}
+
+
+
+
+#include<iostream>
+#include<fstream>
+using namespace std;
+
+int main(){
+    fstream st;
+    st.open("f2.txt",ios::out);
+    if(!st){
+        cout<<"File dose Not Exist...!";
+        return 1;
+    }else{
+        
+        cout<<"New File Created :";
+        st<<"Welcome To The Object Oriented Programming";
+
+        cout<<"File Pointer Position Is "<<st.tellp()<<endl;
+        st.seekp(-1,ios::cur);
+
+        cout<<"As Per The tellp File Pointer Position Is "<<st.tellp()<<endl;
+        st.close();
+    }
+
+    st.open("f2.txt",ios::in);
+    if(!st){
+        cout<<"File dose Not Exist...!";
+        return 1;
+    }else{
+        char ch;
+        st.seekg(5,ios::beg);
+        cout<<"As Per The tellg File Pointer Position Is "<<st.tellg()<<endl;
+
+        st.seekg(1,ios::cur);
+        cout<<"As Per The tellg File Pointer Position Is "<<st.tellg()<<endl;
+
+        st.close();
+    }
+}
+
+
+
+
+
+
+
+#include<iostream>
+#include<fstream>
+using namespace std;
+
+class student{
+    int roll;
+    char name[50];
+    public:
+
+    void set_data(){
+        cout<<"Enter The Roll No :";
+        cin>>roll;
+
+        cout<<"Enter The Student Name :";
+        cin>>name;
+    }
+
+    void display(){
+        cout<<"\nRoll no :"<<roll<<endl;
+        cout<<"\nName :"<<name<<endl;
+    }
+    int retno(){
+        return roll;
+    }
+};
+
+int main(){
+    fstream file;
+    file.open("student.dat",ios::binary | ios::app);
+    student S[2];
+    int no;
+    for(int i=0;i<2;i++){
+        S[i].set_data();
+        file.write((char*)&S[i],sizeof(S[i]));
+    }
+    file.close();
+    file.open("student.dat",ios::binary | ios::app);
+    file.seekg(0,ios::beg);
+    cout<<"\nOutput\n";
+    for(int i=0;i<2;i++){
+        file.read((char*)&S[i],sizeof(S[i]));
+        S[i].display();
+    }
+    file.close();
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node{
+    struct node *right;
+    int roll;
+    char name[30];
+    float marks;
+    struct node *left;
+}*first = NULL,*last = NULL,*curr = NULL,*tmp = NULL;
+
+void insert_first();
+void insert_last();
+void insert_after();
+void travers();
+void delete_perticuler();
+
+void insert_first(){
+    tmp = (struct node *)malloc(sizeof(struct node));
+    printf("\nEnter the Roll no :");
+    scanf("%d",&tmp->roll);
+    printf("\nEnter The Student Name :");
+    scanf("%s",tmp->name);
+    printf("\nEnter The Marks :");
+    scanf("%f",&tmp->marks);
+    tmp->right = first;
+    if(first == NULL){
+        first = last = tmp;
+    }else{
+        first->left = tmp;
+        first = first->left;
+    }
+    first->left = last;
+    last->right = first;
+    return ;
+}
+
+void insert_last(){
+    tmp = (struct node *)malloc(sizeof(struct node));
+    printf("\nEnter the Roll no :");
+    scanf("%d",&tmp->roll);
+    printf("\nEnter The Student Name :");
+    scanf("%s",tmp->name);
+    printf("\nEnter The Marks :");
+    scanf("%f",&tmp->marks);
+    tmp->left = last;
+    if(first == NULL){
+        first = last = NULL;
+    }else{
+        last->right = tmp;
+        last = tmp;
+    }
+    last->right = first;
+    first->left = last;
+
+}
+
+void insert_after(){
+    if(first == NULL){
+        printf("\nLinked List Is Empty...!");
+        return ;
+    }else{
+        int index,cnt = 1;
+        printf("\nEnter The Index :");
+        scanf("%d",&index);
+        curr = first;
+        while(curr->right != NULL && cnt<index){
+            cnt++;
+            curr = curr->right;
+        }
+        if(cnt == index){
+            tmp = (struct node *) malloc(sizeof(struct node));
+            printf("\nEnter the Roll no :");
+            scanf("%d",&tmp->roll);
+            printf("\nEnter The Student Name :");
+            scanf("%s",tmp->name);
+            printf("\nEnter The Marks :");
+            scanf("%f",&tmp->marks);
+            
+            if(first == last){
+                last->right = tmp;
+                tmp->left = last;
+                last = last->right;
+                last->right = first;
+                first->left = last;
+            }else{
+                tmp->right = curr->right;
+                tmp->left = curr;
+                curr->right = tmp;
+                tmp->right->left = tmp;
+            }
+            
+        }else{
+            printf("\nIndex Not Found....! ");
+        }
+    }
+}
+
+void delete_perticuler(){
+    if(first == NULL){
+        printf("\nLinked List Is Empty....!");
+        return ;
+    }else{
+        int index,cnt=1;
+        printf("\nEnter The Index :");
+        scanf("%d",&index);
+        tmp = first;
+        while(tmp->right != NULL && cnt<index){
+            cnt++;
+            curr = tmp;
+            tmp = tmp->right;
+        }
+        if(cnt == index){
+            printf("\n %d Index Student Is Going To Be Deleted :",index);
+            if(first == last){
+                first = last = NULL;
+            }else if(tmp == first){
+                first = first->right;
+                first->left = last;
+                last->right = first;
+            }else if(tmp == last){
+                last = last->left;
+                last->right = first;
+                first->left = last;  
+            }else{
+                tmp->left->right = tmp->right;
+                tmp->right->left = tmp->left;
+            }
+        }else{
+            printf("\nIndex Not Found...!");
+            return ;
+        }
+    }
+}
+
+void travers_first(){
+    if(first == NULL){
+        printf("\nLinked List Is Empty...!");
+        return ;
+    }else{
+        curr = first;
+        do{
+            printf("%d\n",curr->roll);
+            printf("%s\n",curr->name);
+            printf("%f\n",curr->marks);
+            curr = curr->right;
+        }
+        while(curr != first);
+    }
+}
+
+int main(){
+    insert_first();
+    insert_last();
+    travers_first();
+    insert_after();
+    travers_first();
+    delete_perticuler();
+    travers_first();
+    return 0;
+}

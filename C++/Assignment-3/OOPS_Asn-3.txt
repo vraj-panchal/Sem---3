@@ -1,0 +1,724 @@
+q-1
+
+
+
+#include<iostream>
+
+using namespace std;
+
+class matrix
+{
+
+    private:
+
+    int data[3][3];
+
+    public:
+
+        void input()
+        {
+
+            cout<<"Enter Elements Of the 3x3 Matrix :\n ";
+
+                for(int i=0 ; i<3;i++)
+                {
+                    for(int j=0 ; j<3;j++)
+                    {
+                        cin>>data[i][j];
+                    }
+                }
+        }
+
+
+        matrix operator+(matrix& Other)
+        {
+
+            matrix result;
+
+                for(int i=0; i<3; i++)
+                {
+                    for(int j=0 ; j<3;j++)
+                    {
+                        result.data[i][j]=data[i][j]+Other.data[i][j];
+                    }
+
+                }
+
+                return result;
+
+        }
+
+
+
+        void display()
+        {
+
+        for (int i = 0; i < 3; i++)
+
+        {
+
+            for (int j = 0; j < 3; j++)
+
+            {
+
+                cout << data[i][j] << " ";
+
+            }
+
+            cout << endl;
+
+        }
+
+        }
+
+};
+
+
+
+int main() {
+
+    matrix mat1, mat2, result;
+
+    // Input for the first matrix
+
+    cout << "Matrix 1:\n";
+
+    mat1.input();
+
+    // Input for the second matrix
+
+    cout << "Matrix 2:\n";
+
+    mat2.input();
+
+    // Adding the two matrices
+
+    result = mat1 + mat2;
+
+    // Display the result
+
+    cout << "\nResultant Matrix after addition:\n";
+
+    result.display();
+
+
+
+    return 0;
+
+}
+
+
+Q -2
+
+
+
+#include<iostream>
+
+using namespace std;
+
+class Time
+{
+
+    public:
+    int hh,mm,ss;
+
+    void input(){
+
+        cout<<"Enter The Time In (hh:mm:ss) This Format :";
+
+        cin>>hh>>mm>>ss;
+
+    }
+
+    void display(){
+
+        cout<<"The Time Is : "<<hh<<":"<<mm<<":"<<ss<<endl;
+
+    }
+
+    //Function for overload ' == ' operator , (== means comparetion )
+
+            int operator ==(Time a)
+            {
+                    if(hh == a.hh && mm == a.mm && ss == a.ss)
+                    {
+                        return true;
+                    }
+
+                    return false;
+
+            }
+
+    //Function for overload ' >> ' operator , (>> means insertion )
+
+    friend istream& operator >>(istream& in , Time &a)
+    {
+
+        cout<<"Enter The Time In (hh:mm:ss) This Format :";
+
+        in>>a.hh>>a.mm>>a.ss;
+
+        return in;
+
+    }
+
+    //Function for overload ' << ' operator , (<< means Extrection )
+
+    friend ostream& operator <<(ostream &out , const Time &a)
+    {
+
+        out<<a.hh<<":"<<a.mm<<":"<<a.ss<<endl;
+
+        return out;
+
+    }
+
+    //friend Time compareTime(Time a) {
+
+    //     Time result;
+
+    //     if (hh == a.hh && mm == a.mm && ss == a.ss) {
+
+    //         result.hh = hh;
+
+    //         result.mm = mm;
+
+    //         result.ss = ss;
+
+    //     } else {
+
+    //         // Return an invalid time or special value to indicate they are not equal
+
+    //         result.hh = -1;
+
+    //         result.mm = -1;
+
+    //         result.ss = -1;
+
+    //     }
+
+    //     return result;
+
+    // }
+
+
+
+};
+
+
+int main()
+{
+
+    Time T1,T2;
+
+    T1.input();
+
+    T1.display();
+
+    T2.input();
+
+    T2.display();
+
+
+    if(T1 == T2){
+
+        cout<<"Both Time Are Same..."<<endl;
+
+    }else{
+
+        cout<<"Both Time Are Not Same..."<<endl;
+
+    }
+
+
+    // T3 = T1.compareTime(T2);
+
+    // if (T3.hh != -1){
+
+    //     cout<<"Both times are the same."<<endl;
+
+    // } else {
+
+    //     cout<<"Both times are not the same."<<endl;
+
+    // }
+
+    Time T4;
+
+    cin>>T4;
+
+    cout<<T4;
+
+    return 0;
+
+}
+
+
+Q-2
+
+
+/*
+ * p2.cpp
+ *
+ *  Created on: 07-Oct-2024
+ *      Author: root
+ */
+
+
+
+#include<iostream>
+using namespace std;
+
+class Time {
+    int hour;
+    int minute;
+    int second;
+
+public:
+    Time(int h = 0, int m = 0, int s = 0) {
+        hour = h;
+        minute = m;
+        second = s;
+    }
+
+    bool operator==(const Time& B) {
+        return (hour == B.hour && minute == B.minute && second == B.second);
+    }
+
+    friend ostream& operator<<(ostream& out, const Time& T) {
+        out << T.hour << " : " << T.minute << " : " << T.second << endl;
+        return out;
+    }
+
+    friend istream& operator>>(istream& in, Time& T) {
+        cout << "Enter Hour: ";
+        in >> T.hour;
+
+        cout << "Enter Minute: ";
+        in >> T.minute;
+
+        cout << "Enter Second: ";
+        in >> T.second;
+
+        if (T.hour < 0 || T.hour > 23) T.hour = 0;
+        if (T.minute < 0 || T.minute > 59) T.minute = 0;
+        if (T.second < 0 || T.second > 59) T.second = 0;
+
+        return in;
+    }
+};
+
+int main() {
+    Time t1, t2;
+
+    cout << "Enter time for t1...." << endl;
+    cin >> t1;
+
+    cout << endl << "Enter time for t2...." << endl;
+    cin >> t2;
+
+    cout << endl << "Time t1: " << t1;
+    cout << endl << "Time t2: " << t2 << endl;
+
+    if (t1 == t2) {
+        cout << "The times are the same." << endl;
+    } else {
+        cout << "The times are different." << endl;
+    }
+
+    return 0;
+}
+
+
+
+Q-3
+
+
+#include<iostream>
+
+using namespace std;
+
+class Toggle
+{
+
+public :
+
+    char str[50];
+
+    void input(){
+
+        cout<<"Enter The String :";
+
+        cin>>str;
+
+    }
+
+    void display(){
+
+        cout<<"The String = "<<str;
+
+    }
+
+             void operator ~()
+             {
+                for(int i = 0; str[i] != '\0'; i++)
+                {
+                    if(str[i] >= 'a' && str[i] <= 'z')
+                    {
+                        str[i] = str[i] - 32;
+
+                    }
+                    else if(str[i] >= 'A' && str[i] <= 'Z')
+                    {
+
+                        str[i] = str[i] + 32;
+
+                    }
+
+                }
+
+             }
+
+};
+
+int main(){
+
+    Toggle T1;
+
+    T1.input();
+
+    T1.display();
+
+    ~T1;
+
+    T1.display();
+
+    return 0;
+
+}
+
+
+
+
+
+Q-4
+
+
+
+
+
+#include <iostream>
+
+#include <string>
+
+using namespace std;
+
+class CString
+{
+
+private:
+
+    string str;  // to hold the string
+
+public:
+
+    // Constructor to initialize the string
+
+    CString(const string& s = "") : str(s) {}
+
+    // Overload the + operator for string concatenation
+
+    CString operator+(const CString& other)
+    {
+
+        return CString(str + other.str);  // Concatenate strings
+
+    }
+
+
+    // Overload the == operator to check if two strings are equal
+
+    bool operator==(const CString& other) const {
+
+        return str == other.str;
+
+    }
+
+    // Overload the != operator to check if two strings are not equal
+
+    bool operator!=(const CString& other) const {
+
+        return str != other.str;
+
+    }
+
+    // Overload the < operator for lexicographical comparison
+
+    bool operator<(const CString& other) const {
+
+        return str < other.str;
+
+    }
+
+
+    // Overload the <= operator for lexicographical comparison
+
+    bool operator<=(const CString& other) const {
+
+        return str <= other.str;
+
+    }
+
+    // Overload the > operator for lexicographical comparison
+
+    bool operator>(const CString& other) const {
+
+        return str > other.str;
+
+    }
+
+    // Overload the >= operator for lexicographical comparison
+
+            bool operator>=(const CString& other) const
+            {
+
+                    return str >= other.str;
+
+            }
+
+    // Method to accept user input
+
+    void input()
+    {
+
+        cout << "Enter a string: ";
+
+        cin>>str;
+
+    }
+
+
+    // Method to display the string
+
+    void display() const
+    {
+
+        cout << str << endl;
+
+    }
+
+};
+
+
+int main()
+{
+
+    CString str1, str2, str3;
+
+    // Taking user input for strings
+
+    cout << "Input for str1:\n";
+
+    str1.input();
+
+    cout << "Input for str2:\n";
+
+    str2.input();
+
+    cout << "Input for str3:\n";
+
+    str3.input();
+
+    // Concatenation using + operator
+
+    CString result = str1 + str2;
+
+    cout << "Concatenated String: ";
+
+    result.display();
+
+    // Equality check using == and != operators
+
+    if (str1 == str3)
+    {
+
+        cout << "str1 is equal to str3" << endl;
+
+    }
+    else
+    {
+
+        cout << "str1 is not equal to str3" << endl;
+
+    }
+
+    if (str1 != str2)
+    {
+
+        cout << "str1 is not equal to str2" << endl;
+
+    }
+
+    // Lexicographical comparison using <, <=, >, >= operators
+
+    if (str1 < str2)
+    {
+
+        cout << "str1 is  smaller than str2" << endl;
+
+    }
+
+    if (str1 >= str3)
+    {
+
+        cout << "str1 is lexicographically greater than or equal to str3" << endl;
+
+    }
+
+    return 0;
+
+}
+
+
+
+
+
+
+/*
+ * Q-5.cpp
+ *
+ *  Created on: 07-Oct-2024
+ *      Author: root
+ */
+
+#include <iostream>
+
+using namespace std;
+
+
+class Binary
+{
+
+private:
+
+    float value;  // Float data member to store the value
+
+public:
+
+    // Constructor to initialize the value
+
+    Binary(float v = 0.0) : value(v) {}
+
+    // Overloading the + operator
+
+    Binary operator+(const Binary& other)
+    {
+
+        return Binary(value + other.value);
+
+    }
+
+    // Overloading the - operator
+
+    Binary operator-(const Binary& other)
+    {
+
+        return Binary(value - other.value);
+
+    }
+
+    // Overloading the * operator
+
+    Binary operator*(const Binary& other)
+    {
+
+        return Binary(value * other.value);
+
+    }
+
+    // Overloading the / operator
+
+    Binary operator/(const Binary& other)
+    {
+
+        // Ensure no division by zero
+
+        if (other.value == 0)
+        {
+
+            cout << "Error: Division by zero!" << endl;
+
+            return Binary(0);
+
+        }
+
+        return Binary(value / other.value);
+
+    }
+
+    // Overloading the >> operator for input
+
+    friend istream& operator>>(istream& in, Binary& b)
+    {
+
+        cout << "Enter a value: ";
+
+        in >> b.value;
+
+        return in;
+
+    }
+
+    // Overloading the << operator for output
+
+    friend ostream& operator<<(ostream& out, const Binary& b) {
+
+        out << b.value;
+
+        return out;
+
+    }
+
+};
+
+int main() {
+
+    Binary b1, b2, result;
+
+    // Taking input for b1 and b2
+
+    cout << "Input for b1:" << endl;
+
+    cin >> b1;
+
+    cout << "Input for b2:" << endl;
+
+    cin >> b2;
+
+    // Performing and displaying arithmetic operations
+
+    result = b1 + b2;
+
+    cout << "Addition: " << result << endl;
+
+    result = b1 - b2;
+
+    cout << "Subtraction: " << result << endl;
+
+
+
+    result = b1 * b2;
+
+    cout << "Multiplication: " << result << endl;
+
+
+
+    result = b1 / b2;
+
+    cout << "Division: " << result << endl;
+
+
+
+    return 0;
+
+}

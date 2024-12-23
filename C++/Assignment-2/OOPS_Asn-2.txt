@@ -1,0 +1,1323 @@
+
+/*
+ * Q-1.cpp
+ *
+ *  Created on: 31-Aug-2024
+ *      Author: root
+ */
+#include <iostream>
+
+using namespace std;
+
+class operation
+{
+public:
+    string s1;
+
+    void insert()
+    {
+        cout << "\n Enter Your String : ";
+        cin >> s1;
+    }
+
+    void display()
+    {
+        cout << s1;
+    }
+
+            void length()
+            {
+                int count = 0;
+
+                for (int i = 0; s1[i] != 0; i++)
+                {
+                    count++;
+                }
+                s1 = '\0';
+
+                cout << count;
+            }
+
+                void Ucase()
+                {
+
+                    cout << "\n Enter your String : ";
+                    cin >> s1;
+
+                    int i = 0;
+
+                    while (s1[i] != '\0')
+                    {
+                        if (s1[i] >= 'a' && s1[i] <= 'z')
+                        {
+                            s1[i] = s1[i] - 32;
+                            i++;
+                        }
+                    }
+
+                    cout << "\n String Upper Case : " << s1;
+                }
+
+                    void Lcase()
+                    {
+                        cout << "\n Enter String : ";
+                        cin >> s1;
+
+                        int i = 0;
+
+                        while (s1[i] != '\0')
+                        {
+                            if (s1[i] >= 'A' && s1[i] <= 'Z')
+                            {
+                                s1[i] = s1[i] + 32;
+                                i++;
+                            }
+                        }
+
+                        cout << "\n String Lower Case : " << s1;
+                    }
+
+                        void Comparison()
+                        {
+                            string f1;
+
+                            cout << "Enter Your String : ";
+                            cin >> s1;
+
+                            cout << "Enter Your Comparison string : ";
+                            cin >> f1;
+
+                            int i = 0;
+
+                            while (s1[i] != '\0' || f1[i] != '\0')
+                            {
+                                if (s1[i] == f1[i])
+                                {
+                                    cout << "This String is Same...";
+                                    break;
+                                }
+                                else
+                                {
+                                    cout << "String is Not Same....";
+                                    break;
+                                }
+                            }
+                        }
+
+                            void Copy()
+                            {
+                                string s2 = s1;
+
+                                cout << "\n String Copy: " << s2 << endl;
+                            }
+
+                                void Concatenation()
+                                {
+                                    string s2;
+
+                                    cout << "Enter String for Concatenation: ";
+                                    cin >> s2;
+
+                                    cout << "Your Concatenation String: " << s1 + s2 << endl;
+                                }
+
+                                    void Reverse()
+                                    {
+                                        int j = 0;
+
+                                        for (int i = 0; s1[i] != '\0'; i++)
+                                        {
+                                            j++;
+                                        }
+
+                                        cout << "\n Reversed String : ";
+
+                                        for (int i = j - 1; i >= 0; i--)
+                                        {
+                                            cout << s1[i];
+                                        }
+                                    }
+
+                                        void Palindrome()
+                                        {
+                                            string s2;
+                                            int l = 0, flag = 0,j;
+
+                                            for (int i = 0; s1[i] != '\0'; i++)
+                                            {
+                                                l++;
+                                            }
+
+                                            for (int i = l - 1,j=0; i >= 0; i--,j++)
+                                            {
+                                                s2[j] = s1[i];
+                                            }
+
+                                            for (int i = 0; i < l; i++)
+                                            {
+                                                if (s1[i] == s2[j])
+                                                {
+                                                    flag = 0;
+                                                }
+                                                else
+                                                {
+                                                    flag = 1;
+                                                    break;
+                                                }
+                                            }
+
+                                            if (flag == 0)
+                                            {
+                                                cout << "String Palindrome : ";
+                                            }
+                                            else
+                                            {
+                                                cout << "String Not Palindrome : ";
+                                            }
+                                        }
+};
+
+int main()
+{
+    operation p1;
+
+    int choice;
+
+    p1.insert();
+    p1.display();
+
+menu:
+
+    cout << "\n\n 1. length : \n";
+    cout << " 2. Upper case Of string : \n";
+    cout << " 3. Lower case of String : \n";
+    cout << " 4. Comparison Of String : \n";
+    cout << " 5. Copy of string : \n";
+    cout << " 6. Concatenation of string : \n";
+    cout << " 7. Reverse of String : \n";
+    cout << " 8. Palindrome of string : \n";
+
+    cout << "\n Enter Your Choice : ";
+    cin >> choice;
+
+    switch (choice)
+    {
+    case 1:
+        p1.length();
+
+        goto menu;
+
+    case 2:
+        p1.Ucase();
+
+        goto menu;
+
+    case 3:
+        p1.Lcase();
+
+        goto menu;
+
+    case 4:
+        p1.Comparison();
+
+        goto menu;
+
+    case 5:
+        p1.Copy();
+
+        goto menu;
+
+    case 6:
+        p1.Concatenation();
+
+        goto menu;
+
+    case 7:
+        p1.Reverse();
+
+        goto menu;
+
+    case 8:
+        p1.Palindrome();
+
+        goto menu;
+    }
+
+    return 0;
+}
+
+
+
+/*
+ * Q-2.cpp
+ *
+ *  Created on: 04-Sep-2024
+ *      Author: root
+ */
+
+#include <iostream>
+
+using namespace std;
+
+class Array
+{
+    public:
+        int arr[5];
+
+        void Insert()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                cout << "\n Enter Array element [" << i << "]: ";
+                cin >> arr[i];
+            }
+
+            cout << "\n 1D Array Elements: ";
+            for (int i = 0; i < 5; i++)
+            {
+                cout << arr[i] << " ";
+            }
+            cout << endl;
+        }
+
+        void search()
+        {
+            int search,flag=0;
+
+                cout<<"\n Enter Value You Want To search ";
+                cin>>search;
+
+                for(int i =0 ; i<5 ; i++)
+                {
+                    if(arr[i]==search)
+                    {
+                        flag=1;
+
+                        cout<<"\n Number Is Avilable ";
+                    }
+
+                }
+
+                    if(flag==0)
+                    {
+                        cout<<"Number is Not Avilable ";
+
+                    }
+        }
+
+                    void Bubble_Sort()
+                    {
+                        int temp;
+
+                        cout << "\n1D Array Bubble Sort..\n";
+
+                        // Perform Bubble Sort
+                        for (int i = 0; i < 5 - 1; i++)
+                        {
+                            for (int j = 0; j < 5 - i - 1; j++)
+                            {
+                                if (arr[j] < arr[j + 1])
+                                {
+                                    // Swap arr[j] and arr[j + 1]
+                                    temp = arr[j];
+                                    arr[j] = arr[j + 1];
+                                    arr[j + 1] = temp;
+                                }
+                            }
+                        }
+
+                        // Print the sorted array
+                        for (int i = 0; i < 5; i++)
+                        {
+                            cout << arr[i] << " ";
+                        }
+                        cout << endl;
+                    }
+
+                            void sum()
+                            {
+                                int s=0;
+                                    for(int i=0 ;i<5 ; i++)
+                                    {
+                                        s=s+arr[i];
+                                    }
+
+                                    cout<<"\n Sum OF The 1D array Elements : "<<s;
+                            }
+
+                                void Average()
+                                {
+                                    float avg=0,sum=0;
+
+                                    for(int i=0 ; i<5 ;i++)
+                                    {
+                                        sum=sum+arr[i];
+
+                                    }
+                                    avg=sum/5;
+
+                                    cout<<"\n Average Number Of 1D Array :  "<<avg;
+                                }
+
+                            void Find_MAX_Num()
+                            {
+                                int max=arr[0];
+
+                                for(int i=0 ;i<5 ;i++)
+                                {
+                                    if(arr[i]>max)
+                                    {
+                                        max=arr[i];
+                                    }
+                                }
+
+                                cout<<"\n Maximum Number in 1D array : "<<max;
+
+                            }
+
+                            void Find_MIN_Num()
+                            {
+                                int min=arr[0];
+
+                                for(int i=0 ;i<5 ;i++)
+                                {
+                                    if(arr[i]<min)
+                                    {
+                                        min=arr[i];
+                                    }
+                                }
+
+                                cout<<"\n Maximum Number in 1D array : "<<min;
+
+                            }
+
+                        void Swap_First_last_Num()
+                        {
+                            int temp=0;
+
+                            temp=arr[4];
+                            arr[4]=arr[0];
+                            arr[0]=temp;
+
+                            cout<<"Swap First And Last Number ";
+
+                            for(int i=0 ; i<5 ;i++)
+                            {
+                                cout<<arr[i];
+                            }
+                        }
+
+};
+
+int main()
+{
+
+    Array a1;
+    int choice;
+
+    menu:
+        cout << "\n\n 1. Insert Array Element  \n";
+        cout << " 2. Search Element \n";
+        cout << " 3. Bubble Sort \n";
+        cout << " 4. Sum of Array Elements \n";
+        cout << " 5. Average of Array Elements \n";
+        cout << " 6. Find Maximum value from array elements \n";
+        cout << " 7. Find Minimum value from array elements \n";
+        cout << " 8. Swap first and last element of an array \n";
+        cout << " 9. EXIT \n";
+
+        cout <<"\n Enter Your choice: ";
+        cin >> choice;
+
+            switch (choice)
+            {
+                case 1:
+                    a1.Insert();
+
+                    goto menu;
+
+                case 2:
+                    a1.search();
+
+                    goto menu;
+
+                case 3:
+                    a1.Bubble_Sort();
+
+                    goto menu;
+
+                case 4:
+                    a1.sum();
+
+                    goto menu;
+
+                case 5:
+                    a1.Average();
+
+                    goto menu;
+
+                case 6:
+                    a1.Find_MAX_Num();
+
+                    goto menu;
+
+                case 7:
+                    a1.Find_MIN_Num();
+
+                    goto menu;
+
+                case 8:
+                    a1.Swap_First_last_Num();
+
+                    goto menu;
+
+                case 9:
+                    cout<<"Program Is Exit.....";
+
+                    break;
+                default:
+                    cout << "Invalid choice, please try again." << endl;
+            }
+
+    return 0;
+
+}
+
+
+
+
+
+
+#include<iostream>
+using namespace std;
+
+class Date
+{
+
+public:
+
+    int dd;
+    int mm;
+    int yyyy;
+
+        void get_data()
+        {
+            cout<<"Enter the date :"<<endl;
+            cin>>dd;
+
+            cout<<"Enter the month :"<<endl;
+            cin>>mm;
+
+            cout<<"Enter the Year :"<<endl;
+            cin>>yyyy;
+        }
+
+        void Display()
+        {
+            cout<<" The Date (dd/mm/yyyy) : "<<dd<<"/"<<mm<<"/"<<yyyy;
+        }
+
+        void Leap_year()
+        {
+            if(yyyy % 4 == 0)
+            {
+                cout<<yyyy<<" Is Is The Leap Year : "<<endl;
+            }
+            else
+            {
+                cout<<yyyy<<" Id Not Leap Year : "<<endl;
+            }
+        }
+
+        int day()
+        {
+            return dd;
+        }
+
+        int month()
+        {
+            return mm;
+        }
+
+        int year()
+        {
+            return yyyy;
+        }
+
+};
+
+class Time
+{
+
+public:
+
+    int ss;
+    int mm;
+    int hh;
+
+        void Get_data()
+        {
+            cout<<"Enter the Hours :"<<endl;
+            cin>>hh;
+
+            cout<<"Enter the Minutes :"<<endl;
+            cin>>mm;
+
+            cout<<"Enter the Second :"<<endl;
+            cin>>ss;
+        }
+
+        void Display()
+        {
+            cout<<" The Time (HH : MM : SS) : "<<hh<<":"<<mm<<":"<<ss;
+        }
+
+        int Hours()
+        {
+            return hh;
+        }
+
+        int minutes()
+        {
+            return mm;
+        }
+
+        int second()
+        {
+            return ss;
+        }
+
+
+};
+
+int main()
+{
+    Date D;
+    Time T;
+
+    int choice;
+
+        do
+        {
+
+                cout<<" \n ";
+                cout<<"1. Date."<<endl;
+                cout<<"2. Time."<<endl;
+                cout<<"3. Format Date."<<endl;
+                cout<<"4. Difference between 2 dates."<<endl;
+                cout<<"4. Check Leap year."<<endl;
+                cout<<"5. Retrieve Day."<<endl;
+                cout<<"6. Retrieve Month."<<endl;
+                cout<<"7. Retrieve Year."<<endl;
+                cout<<"8. Retrieve Hour."<<endl;
+                cout<<"9. Retrieve Minute."<<endl;
+                cout<<"10. Retrieve Second. \n"<<endl;
+
+                cout<<"Enter the Choice :";
+           cin>>choice;
+
+            switch (choice)
+            {
+            case 1:
+
+                    D.get_data();
+                    D.Display();
+                break;
+
+            case 2:
+                    T.Get_data();
+                    T.Display();
+
+                break;
+
+            case 3:
+                    D.Display();
+                break;
+
+            case 4:
+
+                    D.Leap_year();
+                break;
+
+            case 5:
+                    cout<<"The Date Is "<<D.day()<<endl;
+                break;
+
+            case 6:
+                    cout<<"The Month Is "<<D.month()<<endl;
+                break;
+
+            case 7:
+                    cout<<"The Year Is "<<D.year()<<endl;
+                break;
+
+            case 8:
+                    cout<<"The Hours Is "<<T.Hours()<<endl;
+                break;
+
+            case 9:
+                    cout<<"The Minutes Is "<<T.minutes()<<endl;
+                break;
+
+            case 10:
+                    cout<<"The Second Is "<<T.second()<<endl;
+                break;
+
+            case 11:
+                    cout<<"You Are Out Of The Program"<<endl;
+                return 0;
+
+            default:
+
+                cout<<" Enter Valid Choice : ";
+                break;
+            }
+
+        } while (1);
+
+        return 0;
+
+}
+
+
+
+
+
+/*
+ * Q-4.cpp
+ *
+ *  Created on: 30-Sep-2024
+ *      Author: root
+ */
+
+
+
+
+#include<iostream>
+using namespace std;
+
+class Employee{
+
+    private :
+
+        int emp_Id;
+        string Name;
+        string designation;
+
+    public :
+
+        string department;
+
+            Employee(int Id = 0,string Nam = "",string Post = "", string Dep = "")
+            {
+                emp_Id = Id;
+                Name = Nam;
+                designation = Post;
+                department = Dep;
+
+            }
+
+        void Display()
+        {
+            cout<<emp_Id<<"\t"<<Name<<"\t"<<designation<<"\t\t"<<department<<"\n";
+        }
+};
+
+class Date
+{
+    private :
+
+        int d=0,m=0;
+
+    public :
+
+        int y=0;
+
+            void get_data()
+            {
+                cout<<"\n Enter The Date (DD/MM/YYYY) :  ";
+                cin>>d>>m>>y;
+            }
+
+        void Display()
+        {
+            cout<<d<<"/"<<m<<"/"<<y<<"\n";
+        }
+};
+
+class Salary
+{
+    private :
+
+        int BS , GS;
+        float HRA , DA;
+
+    public :
+
+        void get_salary()
+        {
+            cout<<"\n Enter Basic Salary : ";
+            cin>>BS;
+
+            if(BS <= 30000)
+            {
+                DA = BS * (60.0 / 100);
+                HRA = BS * (20.0 / 100);
+                GS = DA + HRA +BS;
+            }
+
+            else if(BS > 30000 && BS <= 45000)
+            {
+                DA = BS * (70.0 / 100);
+                HRA = BS * (30.0 / 100);
+                GS = DA + HRA +BS;
+            }
+
+            else if(BS > 45000)
+            {
+                DA = BS * (85.0 / 100);
+                HRA = BS * (40.0 / 100);
+                GS = DA + HRA +BS;
+            }
+            else
+            {
+                cout<<"Enter Valid salary :";
+            }
+
+        }
+
+    void display()
+    {
+        cout<<GS<<"\n";
+    }
+
+};
+
+int main()
+{
+    Employee e[3];
+    Date DOB[3] , DOJ[3] , CD[3];
+    Salary s[3];
+
+    for(int i=0 ; i<3 ; i++)
+    {
+        int id;
+        string Nam,Post,Dep;
+
+        cout<<" \n Employee "<< (i+1)<<" Detail : \n";
+
+        cout<<" Enter The Employee Id : ";
+        cin>>id;
+
+        cout<<" Enter The Employee Name : ";
+        cin>>Nam;
+
+        cout<<" Enter The Designation : ";
+        cin>>Post;
+
+        cout<<" Enter The Department : ";
+        cin>>Dep;
+
+        e[i]=Employee(id , Nam , Post , Dep);
+
+        cout<<" Enter Date Of Birth :\n ";
+        DOB[i].get_data();
+
+        cout<<" Enter Date Of Joining : \n ";
+        DOJ[i].get_data();
+
+        cout<<" Enter Current Date :\n ";
+        CD[i].get_data();
+
+        s[i].get_salary();
+
+    }
+
+    int ex[3];
+
+    for(int i=0 ; i<3; i++)
+    {
+        ex[i]=CD[i].y - DOJ[i].y;
+    }
+
+    cout << "\nDisplaying Employee Details:\n";
+    cout<<"\nID\tNname\tDesigantion\tDepartment\n";
+
+    for (int i = 0; i < 3; i++)
+    {
+        cout << "\n";
+        e[i].Display();
+        cout<<" \n ";
+        cout<<"Date Of Birth :";DOB[i].Display();
+        cout<<"Date Of Joining :";DOJ[i].Display();
+        cout<<"Current Date :";CD[i].Display();
+        cout<<"Salary :";s[i].display();
+        cout <<"Experience : "<<ex[i] << "\n";
+    }
+
+    cout<<"\nSearch The Employee Who Work In Salse Department :"<<endl;
+    cout<<"\nID\tNname\tDesigantion\tDepartment\n";
+    for(int i = 0; i < 3; i++)
+    {
+
+        if(e[i].department == "sales" || e[i].department == "Sales")
+        {
+            cout << "\n";
+            e[i].Display();
+            cout <<" \n";
+            cout<<"Date Of Birth :";DOB[i].Display();
+            cout<<"Date Of Joining :";DOJ[i].Display();
+            cout<<"Current Date :";CD[i].Display();
+            cout<<"Salary :";s[i].display();
+            cout <<"Experience : "<<ex[i] << "\n";
+        }
+    }
+
+    cout<<"\nSearch The Employee Who`s Experiance Is More Then 5 Years :\n";
+    cout<<"\nID\tNname\tDesigantion\tDepartment\n";
+    for(int i=0;i<3;i++)
+    {
+        if(ex[i] > 5)
+        {
+            cout << "\n";
+            e[i].Display();
+            cout << "\n";
+            cout<<"Date Of Birth :";DOB[i].Display();
+            cout<<"Date Of Joining :";DOJ[i].Display();
+            cout<<"Current Date :";CD[i].Display();
+            cout<<"Salary :";s[i].display();
+            cout <<"Experience : "<<ex[i] << "\n";
+        }
+    }
+
+    return 0;
+
+}
+
+
+
+
+
+
+/*
+ * Q-5.cpp
+ *
+ *  Created on: 30-Sep-2024
+ *      Author: root
+ */
+
+
+#include<iostream>
+using namespace std;
+
+class Student
+{
+protected:
+
+    int roll_no;
+    string name;
+
+public:
+
+    void Stud()
+    {
+        cout << "\n Enter The Roll No: ";
+        cin >> roll_no;
+
+        cout << "\n Enter The Name: ";
+        cin >> name;
+    }
+
+    void Display()
+    {
+        cout <<roll_no << " \t\t " << name << "\n";
+    }
+};
+
+class Marks : public Student
+{
+protected:
+    int sub[3];
+    float total = 0.0;
+
+public:
+
+    Marks()  // Correct constructor calling
+    {
+        Stud();
+        for (int i = 0; i < 3; i++)
+        {
+            cout << "\n Enter The Marks for Subject " << i + 1 << ": ";
+            cin >> sub[i];
+            total += sub[i];
+        }
+    }
+
+    void display()
+    {
+        cout << roll_no << "\t" << name;
+        for (int i = 0; i < 3; i++)
+        {
+            cout << "\t\t" << sub[i];
+        }
+        cout << "\t" << total;
+    }
+};
+
+class Result : public Marks
+{
+protected:
+    float per;
+    char grade;
+
+public:
+    Result() : Marks()
+    {
+        per = total / 3;
+
+        if (per < 0 || per > 100)
+        {
+            cout << "There is an issue in marks input\n";
+        }
+        else if (per >= 50 && per < 60)
+        {
+            grade = 'E';
+        }
+        else if (per >= 60 && per < 70)
+        {
+            grade = 'D';
+        }
+        else if (per >= 70 && per < 80)
+        {
+            grade = 'C';
+        }
+        else if (per >= 80 && per < 90)
+        {
+            grade = 'B';
+        }
+        else if (per >= 90 && per <= 100)
+        {
+            grade = 'A';
+        }
+        else
+        {
+            grade = 'F';
+        }
+    }
+
+    float get_percentage()
+    {
+        return per;
+    }
+
+    void Display_Result()
+    {
+        display();
+        cout << "\t" << per << "\t\t" << grade << endl;
+    }
+};
+
+int main()
+{
+    Result r[3];
+
+    cout << "\nRoll no\t Name\t\tSubject 1\tSubject 2\t Subject 3\tTotal\tPercentage\tGrade \n ";
+
+    for (int i = 0; i < 3; i++)  // Fixed to iterate over all 3 students
+    {
+        r[i].Display_Result();
+    }
+
+    // Sorting results based on percentage
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = i + 1; j < 3; j++)
+        {
+            if (r[i].get_percentage() < r[j].get_percentage())
+            {
+                Result temp = r[i];  // Correct swapping logic
+                r[i] = r[j];
+                r[j] = temp;
+            }
+        }
+    }
+
+    cout << "\nAfter sorting by percentage:\n";
+    cout << "\nRoll_no\t Name\t\tSubject1\tSubject2\tSubject3\tTotal\tPercentage\tGrade\n";
+    for (int i = 0; i < 3; i++)
+    {
+        r[i].Display_Result();
+    }
+
+    return 0;
+}
+
+
+
+/*
+ * Q-6.cpp
+ *
+ *  Created on: 30-Sep-2024
+ *      Author: root
+ */
+#include<iostream>
+#include<iomanip>
+using namespace std;
+
+int main(){
+float pi = 3.141592653589793;
+
+cout<<"Default Format : "<<pi<<endl;
+
+cout<<"Fixed- point format with 3 decimal :  "<<fixed<<setprecision(3)<<pi<<endl;
+
+cout<<"Scinetific Format withe 5  decimal :"<<scientific<<setprecision(5)<<pi<<endl;
+
+cout.unsetf(ios::fixed | ios::scientific);
+cout<<"Default float format :"<<pi<<endl;
+
+cout<<"Right - alligned with width 15 :"<<setw(15)<<pi<<endl;
+
+cout<<"Left - allign with width 15 :"<<left<<setw(15)<<pi<<endl;
+
+return 0;
+
+}
+
+
+
+/*
+ * Q-7.cpp
+ *
+ *  Created on: 30-Sep-2024
+ *      Author: root
+ */
+
+#include<iostream>
+using namespace std;
+
+class Date
+{
+public:
+
+    int dd;
+    int mm;
+    int yyyy;
+
+        void get_data()
+        {
+            cout<<" \n Enter The Date ";
+            cin>>dd>>mm>>yyyy;
+
+        }
+
+        void Display()
+        {
+            cout<<"The Date (DD/MM/YYYY) : "<<dd<<"/"<<mm<<"/"<<yyyy <<endl;
+            Check_Date();
+
+        }
+
+        void Check_Date()
+        {
+            if(yyyy>=1900 && yyyy<=9999)
+            {
+                if(mm>=1 && mm <= 12)
+                {
+                    if((dd >= 1 && dd <= 31) && (mm == 1 || mm == 2 || mm == 3 || mm == 5 || mm == 7 || mm == 8 || mm == 10 || mm==10 || mm == 12))
+                    {
+                        cout<<" Date Is Valid : "<<endl;
+                    }
+                    else if((dd>=1 && dd<=30) && (mm==4 || mm==6 || mm==9 || mm==11))
+                    {
+                        cout<<" Date Is Valid : "<<endl;
+                    }
+                    else if((dd>=1 && dd<=28) && (mm==2))
+                    {
+                        cout<<"Date Is Valid :"<<endl;
+                    }
+                    else if(dd==29 && mm==2 && (yyyy%400 == 0 || (yyyy%4==0 && yyyy%100 != 0)))
+                    {
+                        cout<<"Date Is Valid :"<<endl;
+                    }
+                    else
+                    {
+                        cout<<"Date Is Invalid :"<<endl;
+                    }
+
+                }
+                else
+                {
+                    cout<<"Date Is Invalid :"<<endl;
+                }
+            }
+            else
+            {
+                cout<<"Date Is Invalid :"<<endl;
+            }
+            return;
+        }
+
+};
+
+
+int main()
+{
+    Date D;
+
+    D.get_data();
+    D.Display();
+
+}
+
+
+/*
+ * Q-8.cpp
+ *
+ *  Created on: 30-Sep-2024
+ *      Author: root
+ */
+
+#include<iostream>
+using namespace std;
+
+class Book
+{
+protected :
+
+    int no;
+    string B_Name;
+    float B_Price;
+
+public:
+
+     void get_date()
+        {
+
+            cout<<"Enter the book no :";
+            cin>>no;
+
+            cout<<"Enter the book name :";
+            cin>>B_Name;
+
+            cout<<"Enter the book price :";
+            cin>>B_Price;
+
+        }
+
+        void Display(){
+            cout<<"\n";
+            cout<<"Book No : "<<no<<"\n";
+            cout<<"Book Name : "<<B_Name<<"\n";
+            cout<<"Book Price : "<<B_Price<<"\n";
+        }
+
+};
+
+class Author_detail
+{
+public:
+
+   string author_name;
+   int d = 0,m = 0,y = 0;
+
+
+       void get_detail()
+       {
+           cout<<"Enter the Author Name : ";
+           cin>>author_name;
+
+           cout<<"Enter the Publish Date (DD MM YYYY) : ";
+           cin>>d>>m>>y;
+       }
+
+       void display()
+       {
+           cout<<"Author Name : "<<author_name<<"\n";
+           cout<<"Publish Date : "<<d<<"/"<<m<<"/"<<y<<"\n";
+       }
+};
+
+
+class Operations_book : public Author_detail , public Book{
+    public:
+    string a_name;
+    string b_name;
+
+    void search_a_name()
+    {
+        cout<<"Enter the Author Name that you want to search : \n";
+        cin>>a_name;
+        for(int i=0;i<3;i++){
+            if(a_name == author_name)
+            {
+                Display();
+                display();
+            }
+        }
+    }
+    void search_b_name()
+    {
+        cout<<"Enter the Book Name that you want to search :\n";
+        cin>>b_name;
+
+        for(int i=0;i<3;i++){
+            if(b_name == B_Name)
+            {
+               Display();
+                display();
+            }
+        }
+    }
+};
+
+int main()
+{
+    Operations_book book[3],search;
+    int choice;
+    do{
+        cout<<"\nPress 1:Input_Details\npress 2:Display_Details\npress 3:Search_By_Author\npress 4:Search_By_Book\npress 5:Exit\n";
+        cout<<"Enter Your Choice :";
+        cin>>choice;
+
+        switch(choice)
+        {
+            case 1:
+                for(int i=0;i<3;i++)
+                {
+                    book[i].get_date();
+                    book[i].get_detail();
+                }
+            break;
+
+            case 2:
+            for(int i=0;i<3;i++)
+            {
+                book[i].Display();
+                book[i].display();
+            }
+            break;
+
+            case 3:
+            search.search_a_name();
+
+            break;
+
+            case 4:
+            search.search_b_name();
+            break;
+
+            case 5:
+                cout<<"You are out of the program....";
+            return 0;
+
+            default :
+                cout<<"Enter valid choice :\n";
+        }
+
+    }while(1);
+
+    return 0;
+}
+
+
