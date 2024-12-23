@@ -1,0 +1,1571 @@
+1. Singly Linked list, with all operations. (including sorting)
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int x;
+
+struct Node
+{
+    int data;
+    struct Node *next;
+    
+}*first=NULL , *last=NULL , *nn=NULL , *cur , *pre , *temp;
+
+
+void create()
+{
+    printf("\n Enter The value (-1 is Exit )");
+    scanf("%d",&x);
+
+        while (x != -1)
+        {
+            nn=(struct Node *)malloc(sizeof(struct Node));
+
+            nn->data=x;
+            nn->next=NULL;
+
+                if(first==NULL)
+                {
+                    first=nn;
+                    last=nn;
+                }
+                else
+                {
+                    last->next=nn;
+                    last=nn;
+
+                }
+
+                printf("\n Enter The value (-1 is Exit )");
+                scanf("%d",&x);
+        }
+        
+}
+
+void display()
+{
+    temp=first;
+
+        while (temp != last)
+
+        {
+            printf("\n Elements : %d ",temp->data);
+            temp=temp->next;
+        }
+        printf("\n Elements : %d ",temp->data);
+        
+}
+
+void Insert_first()
+{
+    printf("\n Enter The Data : ");
+    scanf("%d",&x);
+
+        nn=(struct Node *)malloc(sizeof(struct Node));
+    
+            nn->data=x;
+            nn->next=first;
+            first=nn;
+}
+
+void Insert_middel()
+{
+    int pos;
+    int count=1;
+    pre=NULL;
+    cur=first;
+
+        printf("\n Enter The Possition : ");
+        scanf("%d",&pos);
+
+            printf("\n Enter The Data : ");
+            scanf("%d",&x);
+
+        nn=(struct Node *)malloc(sizeof(struct Node));
+
+        while (count<pos)
+        {
+            pre=cur;
+            cur=cur->next;
+            count++;
+        }
+
+        nn->data=x;
+        pre->next=nn;
+        nn->next=cur;
+        
+        
+}
+
+void Insert_last()
+{
+    printf("\n Enter Data : ");
+    scanf("%d",&x);
+
+        nn=(struct Node *)malloc(sizeof(struct Node));
+
+            nn->data=x;
+            last->next=nn;
+            last=nn;
+            nn->next=NULL;
+}
+
+
+void Delete_first()
+{
+    if(first==NULL)
+    {
+        printf("\n Under Flow ");
+
+    }
+    else
+    {
+        temp=first;
+        first=first->next;
+        free(temp);
+    }
+
+}
+
+void Delete_middel()
+{
+    int pos;
+    int count=1;
+    pre=NULL;
+    cur=first;
+
+        printf("\n Enter The Possition : ");
+        scanf("%d",&pos);
+
+        while(count<pos);
+        {
+            pre=cur;
+            cur=cur->next;
+            count++;
+        }
+
+        pre->next=cur->next;
+        free(cur);
+}
+
+void Delete_last()
+{
+    temp=first;
+
+        while(temp->next!=last)
+        {
+            temp=temp->next;
+        }
+        free(temp);
+        last=temp;
+        last->next=NULL;
+}
+
+void shorting()
+{
+    pre=first;
+    cur=first->next;
+
+        while(cur!=NULL)
+        {
+            temp=pre;
+
+            while(pre!=NULL)
+            {
+                if(temp->data > pre->data)
+                {
+                    int value = temp->data;
+                    temp->data = pre->data;
+                    pre->data = value;
+                }
+
+                pre = pre->next;
+            }
+
+            pre = cur;
+            cur=cur->next;
+        }
+}
+
+
+int main()
+{
+    create();
+    int c;
+        menu:
+
+            printf("\n 1. Insert first : ");
+            printf("\n 2. Insert Middel : ");
+            printf("\n 3. insert Last : ");
+            printf("\n 4. Delete first : ");
+            printf("\n 5. Delete Middel : ");
+            printf("\n 6. Delete Last : ");
+            printf("\n 7. Display");
+            printf("\n 8. Shorting : ");
+
+                printf("\n Enter your Choice : ");
+                scanf("%d", &c);
+
+            switch (c)
+            {
+            case 1:
+
+                    Insert_first();
+
+                goto menu;
+
+            case 2:
+                    
+                    Insert_middel();
+                
+                goto menu;
+            
+            case 3:
+
+                    Insert_last();
+
+                goto menu;
+
+            case 4:
+
+                    Delete_first();
+
+                goto menu;
+
+            case 5:
+
+                    Delete_middel();
+
+                goto menu;
+            case 6:
+
+                    Delete_last();
+
+                goto menu;
+
+            case 7:
+
+                    display();
+
+                goto menu;
+
+            case 8:
+
+                shorting();
+                
+
+                goto menu;
+
+            case 9:
+
+                printf("\n Program Is Exit Thank You : ");
+
+                break;
+
+
+            
+            default:
+
+                printf("\n Please Valid Choice : ");
+
+                break;
+            }
+
+            return 0;
+}
+
+
+2. Circular Singly linked list, with all operations
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int x;
+
+struct Node
+{
+    int data;
+    struct Node *Next;
+
+} *first = NULL, *last = NULL, *nn = NULL, *pre, *cur, *temp;
+
+void create()
+{
+    printf("\n Enter The Data (-1 to End ) : ");
+    scanf("%d", &x);
+
+    while (x != -1)
+    {
+        nn = (struct Node *)malloc(sizeof(struct Node));
+
+        nn->data = x;
+        nn->Next = NULL;
+
+        if (first == NULL)
+        {
+            first = nn;
+            last = nn;
+        }
+        else
+        {
+            nn->Next = first;
+            last->Next = nn;
+            last = nn;
+        }
+
+        printf("\n Enter The Data (-1 to End ) : ");
+        scanf("%d", &x);
+    }
+}
+
+void Display()
+{
+    temp = first;
+
+    while (temp != last)
+    {
+        printf("\n Element : %d", temp->data);
+        temp = temp->Next;
+    }
+
+    printf("\n Element : %d", temp->data);
+}
+
+void Insert_First()
+{
+    printf("\n Enter The Data : ");
+    scanf("%d", &x);
+
+    nn = (struct Node *)malloc(sizeof(struct Node));
+
+    nn->data = x;
+    nn->Next = first;
+    first=nn;
+}
+
+void Insert_middel()
+{
+    int pos;
+    int count = 1;
+
+    pre = NULL;
+    cur = first;
+
+    printf("\n Enter The Possition : ");
+    scanf("%d", &pos);
+
+    printf("\n Enter The Data : ");
+    scanf("%d", &x);
+
+    nn = (struct Node *)malloc(sizeof(struct Node));
+
+    while (count < pos)
+    {
+        pre = cur;
+        cur = cur->Next;
+        count++;
+    }
+
+    nn->data = x;
+    pre->Next = nn;
+    nn->Next = cur;
+}
+
+void Insert_last()
+{
+    printf("\n Enter The Data : ");
+    scanf("%d", &x);
+
+    nn = (struct Node *)malloc(sizeof(struct Node));
+
+    nn->data = x;
+    last->Next = nn;
+    last = nn;
+    nn->Next = NULL;
+}
+
+void Delete_first()
+{
+    if (first == NULL)
+    {
+        printf("\n Under Flow ");
+    }
+    else
+    {
+        temp = first;
+        first = first->Next;
+        free(temp);
+    }
+}
+
+void Delete_middel()
+{
+    int pos;
+    int count = 1;
+
+    pre = NULL;
+    cur = first;
+
+        printf("\n Enter The Possition : ");
+        scanf("%d",&pos);
+
+    while (count < pos)
+    {
+        pre = cur;
+        cur = cur->Next;
+        count++;
+    }
+
+    pre->Next = cur->Next;
+    free(cur);
+}
+
+void Delete_last()
+{
+    temp = first;
+
+    while (temp->Next != last)
+    {
+        temp = temp->Next;
+    }
+    free(last);
+    last = temp;
+    last->Next = first;
+}
+
+int main()
+{
+    create();
+    int c;
+menu:
+
+    printf("\n 1. Insert first : ");
+    printf("\n 2. Insert Middel : ");
+    printf("\n 3. insert Last : ");
+    printf("\n 4. Delete first : ");
+    printf("\n 5. Delete Middel : ");
+    printf("\n 6. Delete Last : ");
+    printf("\n 7. Display");
+
+    printf("\n Enter your Choice : ");
+    scanf("%d", &c);
+
+    switch (c)
+    {
+    case 1:
+
+        Insert_First();
+
+        goto menu;
+
+    case 2:
+
+        Insert_middel();
+
+        goto menu;
+
+    case 3:
+
+        Insert_last();
+
+        goto menu;
+
+    case 4:
+
+        Delete_first();
+
+        goto menu;
+
+    case 5:
+
+        Delete_middel();
+
+        goto menu;
+    case 6:
+
+        Delete_last();
+
+        goto menu;
+
+    case 7:
+
+        Display();
+
+        goto menu;
+
+    case 8:
+
+        printf("\n Program Is Exit Thank You : ");
+
+        break;
+
+    default:
+
+        printf("\n Please Valid Choice : ");
+
+        break;
+    }
+
+    return 0;
+}
+
+
+
+3. Implementation of queue with linked list
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void Creation();
+void Display();
+void Deletion();
+
+int x;
+
+struct Node
+{
+    int data;
+    struct Node *next;
+} *first = NULL, *last = NULL, *nn = NULL, *cur, *pre, *temp;
+
+void Creation()
+{
+    printf("\n Enter The Data (-1 To end) : ");
+    scanf("%d",&x);
+
+        while(x!=-1)
+        {
+            nn=(struct Node *)malloc(sizeof(struct Node));
+
+                nn->data=x;
+                nn->next=NULL;
+
+                if(first==NULL)
+                {
+                    first=nn;
+                    last=nn;
+                }
+                else
+                {
+                    last->next=nn;
+                    last=nn;
+                }
+
+                printf("\n Enter The Data (-1 To end) : ");
+                scanf("%d",&x);
+
+
+        }
+}
+
+void Display()
+{
+    temp=first;
+
+        while (temp!=last)
+        {
+            printf("\n Element : %d",temp->data);
+            temp=temp->next;
+        }
+
+        printf("\n Element : %d",temp->data);
+        
+}
+
+void Deletion()
+{
+    if(first==NULL)
+    {
+        printf("\n Underflow");
+    }
+    else
+    {
+        temp=first;
+        first=first->next;
+        free(temp);
+    }
+}
+
+int main()
+{
+    menu:
+
+        printf("\n Your choice List .. ");
+
+        printf("\n 1. Insertion/Creation ");
+        printf("\n 2. Display ");
+        printf("\n 3. Deletion ");
+        printf("\n 4. Exit : ");
+
+        int choice;
+
+            printf("\n Enter Your Choice : ");  
+            scanf("%d",&choice);
+
+        switch (choice)
+        {
+        case 1:
+
+                Creation();
+
+            goto menu;
+
+        case 2:
+
+                Display();
+
+            goto menu;
+
+        case 3:
+
+                Deletion();
+
+            goto menu;
+
+        case 4:
+
+            printf("\n Program is Exit Thank You : ");
+
+            break;
+        
+        default:
+
+            printf("\n Please Enter The Valid Choice ");
+            goto menu;
+
+            break;
+        }
+
+        return 0;
+}
+
+
+4. Implementation of stack with linked list
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int x;
+struct Node
+{
+    int data;
+    struct Node *Next;
+} *first = NULL, *last = NULL, *nn = NULL, *cur, *pre, *temp;
+
+void Creation()
+{
+    printf("\n Enter The Data (-1 to End) : ");
+    scanf("%d",&x);
+
+        while (x!=-1)
+        {
+            nn=(struct Node *)malloc(sizeof(struct Node));
+
+            nn->data=x;
+            nn->Next=NULL;
+
+            if(first==NULL)
+            {
+                first=nn;
+                last=nn;
+            }
+            else
+            {
+                last->Next=nn;
+                last=nn;
+            }
+
+            printf("\n Enter The Data (-1 to End) : ");
+            scanf("%d",&x);
+        }
+
+}
+
+void Display()
+{
+    temp=first;
+
+        while (temp!=last)
+        {
+            printf("\n Element : %d ",temp->data);
+            temp=temp->Next;
+        }
+        printf("\n Element : %d ",temp->data);
+        
+}
+
+void Deletion()
+{
+    temp=first;
+
+        while (temp->Next!=last)
+        {
+            temp=temp->Next;
+        }
+        free(last);
+        last=temp;
+        last->Next=NULL;
+        
+}
+
+
+int main()
+{
+    menu:
+
+        printf("\n Your choice List .. ");
+
+        printf("\n 1. Insertion/Creation ");
+        printf("\n 2. Display ");
+        printf("\n 3. Deletion ");
+        printf("\n 4. Exit : ");
+
+        int choice;
+
+            printf("\n Enter Your Choice : ");  
+            scanf("%d",&choice);
+
+        switch (choice)
+        {
+        case 1:
+
+                Creation();
+
+            goto menu;
+
+        case 2:
+
+                Display();
+
+            goto menu;
+
+        case 3:
+
+                Deletion();
+
+            goto menu;
+
+        case 4:
+
+            printf("\n Program is Exit Thank You : ");
+
+            break;
+        
+        default:
+
+            printf("\n Please Enter The Valid Choice ");
+            goto menu;
+
+            break;
+        }
+
+        return 0;
+}
+
+
+
+
+5. Doubly linked list, will all operations and display
+
+Display from first to last
+Display from last to first
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void creation();
+void Insert_first();
+void Insert_middel();
+void Insert_last();
+void Delete_first();
+void Delete_middel();
+void Delete_last();
+// void Display();
+void Display_First_Last();
+void Display_last_First();
+
+int x;
+
+struct Node
+{
+    int data;
+    struct Node *right;
+    struct Node *Left;
+
+} *first = NULL, *last = NULL, *nn = NULL, *cur, *pre, *temp;
+
+void creation()
+{
+    printf("\n Enter The Data (-1 to end) : ");
+    scanf("%d", &x);
+
+    while (x != -1)
+    {
+        nn = (struct Node *)malloc(sizeof(struct Node));
+
+        nn->data = x;
+        nn->right = NULL;
+        nn->Left = NULL;
+
+        if (first == NULL)
+        {
+            first = nn;
+            last = nn;
+        }
+        else
+        {
+            last->right = nn;
+            nn->Left = last;
+            last = nn;
+        }
+
+        printf("\n Enter The Data (-1 to end) : ");
+        scanf("%d", &x);
+    }
+}
+
+void Display_First_Last()
+{
+    temp = first;
+
+    while (temp->right != NULL)
+    {
+        printf("\n Element : %d", temp->data);
+        temp = temp->right;
+    }
+    printf("\n Element : %d", temp->data);
+}
+
+void Display_last_First()
+{
+    temp = last;
+
+    while (temp->Left != NULL)
+    {
+        printf("\n Element : %d ", temp->data);
+        temp = temp->Left;
+    }
+    printf("\n Element : %d ", temp->data);
+}
+
+void Insert_first()
+{
+    printf("\n Enter The Data : ");
+    scanf("%d", &x);
+
+    nn = (struct Node *)malloc(sizeof(struct Node));
+
+    nn->data = x;
+    nn->right = first;
+    first->Left = nn;
+    first = nn;
+    nn->Left = NULL;
+}
+
+void Insert_last()
+{
+    printf("\n Enter The Data : ");
+    scanf("%d", &x);
+
+    nn = (struct Node *)malloc(sizeof(struct Node));
+
+    nn->data = x;
+    nn->Left = last;
+    last->right = nn;
+    nn->right = NULL;
+    last = nn;
+}
+
+void Insert_middel()
+{
+    int pos;
+    int count = 1;
+
+    pre = NULL;
+
+    printf("\n Enter The Possition : ");
+    scanf("%d", &pos);
+
+    printf("\n Enter The Data : ");
+    scanf("%d", &x);
+
+    nn = (struct Node *)malloc(sizeof(struct Node));
+    nn->data = x;
+    cur = first;
+
+    while (count < pos)
+    {
+        cur = cur->right;
+        count;
+    }
+    nn->Left = cur->Left;
+    nn->right = cur;
+    cur->Left->right = nn;
+    cur->Left = nn;
+}
+
+void Delete_first()
+{
+
+    temp = first;
+
+    first = first->right;
+    free(temp);
+    first->Left = NULL;
+}
+
+void Delete_last()
+{
+    last = last->Left;
+    last->right = NULL;
+}
+
+void Delete_middel()
+{
+    int pos;
+    int count = 1;
+
+    printf("\n Enter The Possition : ");
+    scanf("%d", &pos);
+    cur=first;
+
+    
+    while (count < pos)
+    {
+        cur = cur->right;
+        count++;
+    }
+    cur->Left->right = cur->right;
+    cur->right->Left = cur->Left;
+    free(cur);
+}
+
+int main()
+{
+    creation();
+menu:
+
+    printf("\n Your Chice List : \n");
+
+    printf("\n 1. Insert Fitst : ");
+    printf("\n 2. Insert Middel : ");
+    printf("\n 3. Insert Last : ");
+    printf("\n 4. Delete First : ");
+    printf("\n 5. Delete Middel : ");
+    printf("\n 6. Delete Last : ");
+    printf("\n 7. Display First To Last : ");
+    printf("\n 8. Display Last To First : ");
+
+    int choice;
+
+    printf("\n Enter Your choice :");
+    scanf("%d", &choice);
+
+    switch (choice)
+    {
+    case 1:
+
+        Insert_first();
+
+        goto menu;
+
+    case 2:
+
+        Insert_middel();
+
+        goto menu;
+
+    case 3:
+
+        Insert_last();
+
+        goto menu;
+
+    case 4:
+
+        Delete_first();
+
+        goto menu;
+
+    case 5:
+
+        Delete_middel();
+
+        goto menu;
+
+    case 6:
+
+        Delete_last();
+
+        goto menu;
+
+    case 7:
+
+        Display_First_Last();
+
+        goto menu;
+
+    case 8:
+
+        Display_last_First();
+    
+    case 9:
+        printf("\n Program Is Exit >>");
+        break;
+
+    default:
+
+        printf("\n Please Enter Valid Choice : ");
+        break;
+
+        goto menu;
+    }
+
+    return 0;
+}
+
+
+
+
+6. Linked list for student data
+Rollno, name, sem, sub1marks, sub2marks, sub3marks, total
+Operations: insertion, display, delete by rollno, display student node
+with highest marks
+
+
+
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int x;
+void Insertion();
+void Display();
+void Display_Highest_Marks();
+
+struct Student {
+    int Roll, Sem, Sub1, Sub2, Sub3;
+    float total;
+    char name[50];
+    struct Student *next;
+} *first = NULL, *last = NULL, *nn = NULL, *temp,*cur,*pre;
+
+void Insertion() {
+    
+    printf("\n Enter The Value 1 to insert or -1 to stop: ");
+    scanf("%d", &x);
+
+    while (x != -1) {
+        nn = (struct Student *)malloc(sizeof(struct Student));
+
+        printf("\n\n Enter The Student Details >>>>");
+        printf("\n Enter Roll No : ");
+        scanf("%d", &nn->Roll);
+
+        printf("\n Enter Name : ");
+        scanf("%s", nn->name);
+
+        printf("\n Enter The Sem : ");
+        scanf("%d", &nn->Sem);
+
+        printf("\n Enter The Sub 1 Marks : ");
+        scanf("%d", &nn->Sub1);
+
+        printf("\n Enter The Sub 2 Marks : ");
+        scanf("%d", &nn->Sub2);
+
+        printf("\n Enter The Sub 3 Marks : ");
+        scanf("%d", &nn->Sub3);
+
+        // Calculate total marks
+        nn->total = nn->Sub1 + nn->Sub2 + nn->Sub3;
+
+        nn->next = NULL;
+
+        if (first == NULL) {
+            first = nn;
+            last = nn;
+        } else {
+            last->next = nn;
+            last = nn;
+        }
+
+        printf("\n Enter The Value 1 to insert or -1 to stop: ");
+        scanf("%d", &x);
+    }
+}
+
+void Display() {
+    temp = first;
+    printf("\nRoll No\t Name \t Sem \t Sub1 \t Sub2 \t Sub3 \t Total");
+
+    while (temp != NULL) {
+        printf("\n%d\t %s \t %d \t %d \t %d \t %d \t %.2f", temp->Roll, temp->name, temp->Sem, temp->Sub1, temp->Sub2, temp->Sub3, temp->total);
+        temp = temp->next;
+    }
+}
+
+void Delete_by_roll_no()
+{
+    if(first == NULL)
+    {
+        printf("\n\n Student Data is Empty ");
+    }
+    int delete;
+
+        printf("\n Enter The Roll NO To delete : ");
+        scanf("%d",&delete);
+
+    cur=first;
+    pre=NULL;
+
+
+        while(cur != NULL)
+        {
+            if(cur->Roll == delete)
+            {
+                printf("\nRoll No\t Name \t Sem \t Sub1 \t Sub2 \t Sub3 \t Total");
+                printf("\n%d\t %s \t %d \t %d \t %d \t %d \t %.2f", cur->Roll, cur->name, cur->Sem, cur->Sub1, cur->Sub2, cur->Sub3, cur->total);
+                    
+
+                pre->next =cur->next;
+                cur->next = NULL;
+                free(cur);
+
+            }
+
+            pre=cur;
+            cur=cur->next;
+        }
+
+        if(cur == NULL)
+        {
+            printf("\n\nRoll Number Is Not Available.....");
+
+        }
+
+        if(cur == last)
+        {
+                printf("\nRoll No\t Name \t Sem \t Sub1 \t Sub2 \t Sub3 \t Total");
+                printf("\n%d\t %s \t %d \t %d \t %d \t %d \t %.2f", cur->Roll, cur->name, cur->Sem, cur->Sub1, cur->Sub2, cur->Sub3, cur->total);
+
+            last=pre;
+        }
+
+        free(cur);
+    
+
+
+}
+
+
+
+void Display_Highest_Marks() 
+{
+    if (first == NULL) 
+    {
+        printf("\n No students available.");
+        return;
+    }
+
+    struct Student *max = first;
+    temp = first->next;
+
+    while (temp != NULL) 
+    {
+        if (temp->total > max->total) 
+        {
+            max = temp;
+        }
+        temp = temp->next;
+    }
+
+    printf("\nStudent with the highest marks:");
+    
+    printf("\nRoll No: %d\nName: %s\nSem: %d\nSub1: %d\nSub2: %d\nSub3: %d\nTotal: %.2f", 
+           max->Roll, max->name, max->Sem, max->Sub1, max->Sub2, max->Sub3, max->total);
+}
+
+int main() {
+    int choice;
+
+     
+    menu:
+
+        printf("\n\n Your Choice >>> ");
+        printf("\n 1. Insertion ");
+        printf("\n 2. Display ");
+        printf("\n 3. Display Highrst Marks : ");
+        printf("\n 4. Delete By Roll No ");
+        printf("\n 5. Exit ");
+        printf("\n Enter Your Choice : ");
+        scanf("%d", &choice);
+
+        switch (choice) 
+        {
+            case 1:
+
+                Insertion();
+                
+                goto menu;
+
+            case 2:
+                Display();
+
+                goto menu;
+
+            case 3:
+
+                Display_Highest_Marks();
+                
+                goto menu;
+
+            case 4:
+
+                 Delete_by_roll_no();
+
+                 goto menu;
+
+            default:
+                printf("\nInvalid Choice!");
+                break;
+        }
+
+        return 0;
+    }
+
+    
+
+
+
+
+
+7. Merging of two linked list
+Insert 2 values inside a node, character and integer, divide this list
+into two linked list into integer LL and character LL
+Make addition of interger values of all the nodes in a SLL
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char ch[100]; // Array to hold character input
+int x;
+
+// Structure for character node
+struct CharNode {
+    char character;
+    struct CharNode* next;
+} *first1 = NULL, *last1 = NULL,*nn1=NULL,*temp1;
+
+// Structure for integer node
+struct IntNode {
+    int integer;
+    struct IntNode* next;
+} *first2 = NULL, *last2 = NULL,*nn2=NULL,*temp2;
+
+// Structure for merged node containing both integer and character
+struct MergedNode {
+    char character;
+    int integer;
+    struct MergedNode* next;
+} *first3 = NULL, *last3 = NULL,*nn3=NULL,*temp3;
+
+// Function prototypes
+void Insert();
+void Display_Char_List();
+void Display_Int_List();
+void Merge_Lists();
+void Display_Merged_List();
+
+// Function to create and insert a node in the main list
+void Insert() {
+    printf("\nEnter Character Data (-1 to End): ");
+    scanf("%s", ch);
+    
+    printf("Enter Integer Data (-1 to End): ");
+    scanf("%d", &x);
+
+    while (x != -1) {
+        nn1 = (struct CharNode*)malloc(sizeof(struct CharNode));
+        nn2 = (struct IntNode*)malloc(sizeof(struct IntNode));
+
+        nn1->character = ch[0]; // Assuming you want the first character of the string
+        nn1->next = NULL;
+        nn2->integer = x;
+        nn2->next = NULL;
+
+        if (first1 == NULL) {
+            first1 = nn1;
+            last1 = nn1;
+            first2 = nn2;
+            last2 = nn2;
+        } else {
+            last1->next = nn1;
+            last1 = nn1;
+            last2->next = nn2;
+            last2 = nn2;
+        }
+
+        printf("\nEnter Character Data (-1 to End): ");
+        scanf("%s", ch);
+        
+        printf("Enter Integer Data (-1 to End): ");
+        scanf("%d", &x);
+    }
+}
+
+void Display_Char_List() 
+{
+    temp1 = first1;
+    printf("\nCharacter List:");
+    while (temp1 != NULL) 
+    {
+        printf(" %c ->", temp1->character);
+        temp1 = temp1->next;
+    }
+    printf(" NULL\n");
+}
+
+void Display_Int_List() {
+    
+    temp2 = first2;
+
+    printf("\nInteger List:");
+    while (temp2 != NULL) 
+    {
+        printf(" %d ->", temp2->integer);
+        temp2 = temp2->next;
+    }
+    printf(" NULL\n");
+}
+
+void Merge_Lists() {
+     
+    temp1 = first1;
+    temp2 = first2;
+    
+    while (temp1 != NULL && temp2 != NULL) 
+    {
+        nn3 = (struct MergedNode*)malloc(sizeof(struct MergedNode));
+
+        nn3->character = temp1->character;
+        nn3->integer = temp2->integer;
+        nn3->next = NULL;
+
+        if (first3 == NULL) 
+        {
+            first3 = nn3;
+            last3 = nn3;
+        } else 
+        {
+            last3->next = nn3;
+            last3 = nn3;
+        }
+
+        temp1 = temp1->next;
+        temp2 = temp2->next;
+    }
+}
+
+void Display_Merged_List() {
+    
+    temp3 = first3;
+    printf("\nMerged List:");
+    while (temp3 != NULL) 
+    {
+        printf(" (%c, %d) ->", temp3->character, temp3->integer);
+        temp3 = temp3->next;
+    }
+    printf(" NULL\n");
+}
+
+// Main function
+int main() {
+    int choice;
+
+    while (1) {
+        printf("\n\nMenu:");
+        printf("\n1. Insert (Character, Integer)");
+        printf("\n2. Display Character List");
+        printf("\n3. Display Integer List");
+        printf("\n4. Merge Character and Integer Lists");
+        printf("\n5. Display Merged List");
+        printf("\n6. Exit");
+        printf("\nEnter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                Insert();
+                break;
+            case 2:
+                Display_Char_List();
+                break;
+            case 3:
+                Display_Int_List();
+                break;
+            case 4:
+                Merge_Lists();
+                printf("Lists merged.\n");
+                break;
+            case 5:
+                Display_Merged_List();
+                break;
+            case 6:
+                exit(0);
+            default:
+                printf("Invalid choice!\n");
+        }
+    }
+
+    return 0;
+}
+
+
+
+
+8. Create a Singly linked list to represent polynomial
+
+
+9. Create a Singly linked list and perform sum all node values.
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void Creation();
+void Display();
+void Addition();
+
+int x;
+
+struct Node
+{
+    int data;
+    struct Node *next;
+} *first = NULL, *last = NULL, *nn = NULL, *cur, *pre, *temp;
+
+void Creation()
+{
+    printf("\n Enter The Data (-1 To end) : ");
+    scanf("%d",&x);
+
+        while(x!=-1)
+        {
+            nn=(struct Node *)malloc(sizeof(struct Node));
+
+                nn->data=x;
+                nn->next=NULL;
+
+                if(first==NULL)
+                {
+                    first=nn;
+                    last=nn;
+                }
+                else
+                {
+                    last->next=nn;
+                    last=nn;
+                }
+
+                printf("\n Enter The Data (-1 To end) : ");
+                scanf("%d",&x);
+
+
+        }
+}
+
+void Display()
+{
+    temp=first;
+
+        while (temp!=last)
+        {
+            printf("\n Element : %d",temp->data);
+            temp=temp->next;
+        }
+
+        printf("\n Element : %d",temp->data);
+        
+}
+
+void Addition()
+{
+   int sum=0;
+
+   temp=first;
+    
+        while (temp!=NULL)
+        {
+            sum=sum+temp->data;
+            temp=temp->next;
+        }
+        printf("\n Addition Of Singly Linked List : %d ",sum);
+        
+}
+
+int main()
+{
+    menu:
+
+        printf("\n Your choice List .. ");
+
+        printf("\n 1. Insertion/Creation ");
+        printf("\n 2. Display ");
+        printf("\n 3. Addition ");
+        printf("\n 4. Exit : ");
+
+        int choice;
+
+            printf("\n Enter Your Choice : ");  
+            scanf("%d",&choice);
+
+        switch (choice)
+        {
+        case 1:
+
+                Creation();
+
+            goto menu;
+
+        case 2:
+
+                Display();
+
+            goto menu;
+
+        case 3:
+
+                Addition();
+
+            goto menu;
+
+        case 4:
+
+            printf("\n Program is Exit Thank You : ");
+
+            break;
+        
+        default:
+
+            printf("\n Please Enter The Valid Choice ");
+            goto menu;
+
+            break;
+        }
+
+        return 0;
+}
+
+
